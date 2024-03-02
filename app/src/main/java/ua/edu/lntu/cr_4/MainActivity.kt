@@ -58,7 +58,24 @@ fun Screen1(navController: NavHostController) {
 }
 
 @Composable
-fun Screen2() {
+fun Screen2(navController: NavController, buttonNumber: Int) {
+    val scope = rememberCoroutineScope()
+    Column(modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            textAlign = TextAlign.Center,
+            text = "Item $buttonNumber",
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = { scope.launch { navController.popBackStack() } },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Back")
+        }
+    }
 }
 
 @Composable
