@@ -44,7 +44,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Screen1() {
+fun Screen1(navController: NavHostController) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        for (i in 1..5) {
+            Button(
+                onClick = { navController.navigate("screen2/$i") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Item $i")
+            }
+        }
+    }
 }
 
 @Composable
