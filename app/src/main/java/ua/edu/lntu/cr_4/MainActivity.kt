@@ -44,5 +44,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun Screen1() {
+}
+
+@Composable
+fun Screen2() {
+}
+
+@Composable
 fun MyApp() {
+    val navController = rememberNavController()
+    MaterialTheme {
+        NavHost(navController, startDestination = "screen1") {
+            composable("screen1") { Screen1(navController) }
+            composable(
+                route = "screen2/{buttonNumber}",
+                arguments = listOf(navArgument("buttonNumber") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val buttonNumber = backStackEntry.arguments?.getInt("buttonNumber") ?: 0
+                Screen2(navController, buttonNumber)
+            }
+        }
+    }
 }
